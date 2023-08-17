@@ -36,7 +36,7 @@ def get_int_file(repository_path, filename):
     try:
         with open(file_path, "r") as file:
             content = file.read()
-            return int(content)
+        return int(content)
 
     except FileNotFoundError:
         print(f"The file '{filename}' does not exist.")
@@ -83,8 +83,16 @@ def increment_latest(repository_path):
 
 
 def get_log(repository_path):
-    # todo
-    pass
+    file_path = os.path.join(repository_path, "log")
+
+    try:
+        with open(file_path, "r") as file:
+            content = file.read()
+        return content
+    except FileNotFoundError:
+        print(f"The log file does not exist.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 
 def append_log(repository_path, id, date, time, msg):
