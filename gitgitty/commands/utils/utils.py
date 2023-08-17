@@ -3,6 +3,7 @@ import shutil
 
 def copy_existing_files(source, destination):
     existing_files = [f for f in os.listdir(source) if os.path.isfile(os.path.join(source, f))]
+    existing_directory = [d for d in os.listdir(source) if os.path.isdir(os.path.join(source, d)) and d != ".gitgitty"]
 
     if not os.path.exists(destination):
         os.makedirs(destination, exist_ok=False)
@@ -13,12 +14,20 @@ def copy_existing_files(source, destination):
             destination_file_path = os.path.join(destination, filename)
         
             shutil.copy(source_file_path, destination_file_path)
+        
+        for foldername in existing_directory:
+            source_file_path = os.path.join(source, foldername)
+            destination_file_path = os.path.join(destination, foldername)
+        
+            shutil.copytree(source_file_path, destination_file_path)
 
     except PermissionError as e:
-        print(f"PermissionError: {e}\nfile copy failed")
+        print(f"{e}\nfile copy failed")
+        shutil.rmtree(destination)
         raise e
     except OSError as e:
-        print(f"FileNotFoundError: {e}\n file copy failed")
+        print(f"{e}\n file copy failed")
+        shutil.rmtree(destination)
         raise e
 
 
