@@ -13,7 +13,7 @@ def init(args):
     repo_directory = os.path.join(cwd, ".gitgitty")
 
     try:
-        os.makedirs(repo_directory, exist_ok=True)
+        os.makedirs(repo_directory, exist_ok=False)
         
         # log file
         log_path = os.path.join(repo_directory, "log")
@@ -24,6 +24,11 @@ def init(args):
         head_path = os.path.join(repo_directory, "head")
         with open(head_path, 'w') as head_file:
             head_file.write("0")
+
+        # latest
+        latest_path = os.path.join(repo_directory, "latest")
+        with open(latest_path, 'w') as latest_file:
+            latest_file.write("0")
 
         # snapshots folder
         snapshots_path = os.path.join(repo_directory, "snapshots")
@@ -36,6 +41,9 @@ def init(args):
 
         print(f"initialized repository {os.path.basename(cwd)}")
         
+    except FileExistsError as e:
+        print(f"FileExistsError: repository is already created")
+
     except Exception as e:
         print(f"Error: {e}")
 
