@@ -20,16 +20,17 @@ def main():
 
         return
 
+    command_args = args[1:]
     if args[0] == "help":
         print(help)
     elif args[0] == "init":
-        init.init(args);
+        init.init(command_args);
     elif args[0] == "commit":
-        commit.commit(args)
+        commit.commit(command_args)
     elif args[0] == "log":
-        log.log(args) 
+        log.log(command_args) 
     elif args[0] == "checkout":
-        checkout.checkout(args)
+        checkout.checkout(command_args)
     else:
         print("invalid syntax\n'gitgitty help' list available commands")
 
