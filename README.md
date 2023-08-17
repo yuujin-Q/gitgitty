@@ -28,11 +28,3 @@ available commands:
 ```
 
 `gitgitty` is substituted using `python <gitgitty.py path>` or using compiled binary PATH
-
-## Compile
-In root of repository, run the following
-```sh
-pyinstaller --onefile ./src/gitgitty.py --distpath=./bin
-```
-
-Copy substitute path when running `gitgitty` or add to system path.
