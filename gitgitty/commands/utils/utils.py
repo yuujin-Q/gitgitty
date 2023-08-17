@@ -1,7 +1,7 @@
 import os
 import shutil
 
-def clear_staging_directory(directory_path):
+def clear_working_directory(directory_path):
     try:
         for item in os.listdir(directory_path):
             item_path = os.path.join(directory_path, item)

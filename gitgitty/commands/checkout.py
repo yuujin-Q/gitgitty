@@ -2,9 +2,9 @@ import os
 from .utils import utils
 def checkout(args):
     cwd = os.getcwd()
-    repo_path = utils.find_repository(cwd)
+    repository_path = utils.find_repository(cwd)
 
-    if repo_path is None:
+    if repository_path is None:
         print("not in a repository")
         return
     
@@ -14,12 +14,12 @@ def checkout(args):
     
     try:
         version_id = int(args[0])
-        repo_files = os.path.join(repo_path, "..")
-        snapshot_checkout_path = os.path.join(repo_path, "snapshots", str(version_id))
+        working_directory = os.path.join(repository_path, "..")
+        snapshot_checkout_path = os.path.join(repository_path, "snapshots", str(version_id))
         
-        utils.clear_staging_directory(repo_files)
-        utils.copy_existing_files(snapshot_checkout_path, repo_files)
-        utils.set_head(repo_path, version_id)
+        utils.clear_working_directory(working_directory)
+        utils.copy_existing_files(snapshot_checkout_path, working_directory)
+        utils.set_head(repository_path, version_id)
 
         print("checkout success")
 
