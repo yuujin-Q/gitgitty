@@ -14,6 +14,10 @@ def checkout(args):
     
     try:
         version_id = int(args[0])
+        if version_id > utils.get_latest(repository_path) or version_id < 0:
+            print("version id unavailable, checkout fail")
+            return
+        
         working_directory = os.path.join(repository_path, "..")
         snapshot_checkout_path = os.path.join(repository_path, "snapshots", str(version_id))
         
