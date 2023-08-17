@@ -31,3 +31,8 @@ available commands:
 
 ## Compile
 In root of repository, run the following
+```sh
+pyinstaller --onefile ./src/gitgitty.py --distpath=./bin
+```
+
+Copy substitute path when running `gitgitty` or add to system path.
