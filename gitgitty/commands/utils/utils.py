@@ -1,6 +1,33 @@
 import os
 import shutil
 
+def clear_staging_directory(directory_path):
+    try:
+        for item in os.listdir(directory_path):
+            item_path = os.path.join(directory_path, item)
+            if item != ".gitgitty" and os.path.exists(item_path):
+                if os.path.isfile(item_path):
+                    os.remove(item_path)
+                    print(f"Deleted file: {item}")
+                elif os.path.isdir(item_path):
+                    shutil.rmtree(item_path)
+                    print(f"Deleted folder: {item}")
+        print("Deletion completed.")
+
+    except FileNotFoundError as e:
+        print(f"{e}\nThe directory '{directory_path}' does not exist.")
+        raise e
+    except PermissionError as e:
+        print(f"{e}\nfile copy failed")
+        raise e
+    except OSError as e:
+        print(f"{e}\n file copy failed")
+        raise e
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        raise e
+
+
 def copy_existing_files(source, destination):
     existing_files = [f for f in os.listdir(source) if os.path.isfile(os.path.join(source, f))]
     existing_directory = [d for d in os.listdir(source) if os.path.isdir(os.path.join(source, d)) and d != ".gitgitty"]

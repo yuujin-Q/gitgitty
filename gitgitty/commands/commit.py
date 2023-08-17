@@ -27,7 +27,6 @@ def commit(args):
     try:
         repo_files = os.path.join(repo_path, "..")
         new_snapshot_path = os.path.join(repo_path, "snapshots", str(utils.get_latest(repo_path) + 1))
-        print(repo_files, new_snapshot_path)
         
         utils.copy_existing_files(repo_files, new_snapshot_path)
         utils.increment_latest(repo_path)
