@@ -18,7 +18,7 @@ def init(args):
         # log file
         log_path = os.path.join(repo_directory, "log")
         with open(log_path, 'w') as log_file:
-            log_file.write(f"version=0, date={datetime.now().date()}, time={datetime.now().time()}, msg=init;")
+            log_file.write(f"0, {datetime.now().date()}, {datetime.now().time()}, init\n")
 
         # head file
         head_path = os.path.join(repo_directory, "head")
