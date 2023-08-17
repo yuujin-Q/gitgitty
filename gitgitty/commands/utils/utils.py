@@ -36,6 +36,8 @@ def find_repository(start_directory):
         if ".gitgitty" in dirs:
             return os.path.join(root, ".gitgitty")
 
+        del dirs[:]
+
     return None  # If the target folder is not found
 
 
